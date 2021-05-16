@@ -17,6 +17,7 @@
                     <th scope="col" class="sort" data-sort="completion">phone1</th>
                     <th scope="col" class="sort" data-sort="completion">phone2</th>
                     <th scope="col" class="sort" data-sort="completion">ُEmail</th>
+                    <th scope="col" class="sort" data-sort="completion">Delete</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -49,6 +50,16 @@
                     </td>
                     <td class="budget">
                         $2500 USD
+                    </td>
+                    <td class="budget">
+                        <form action="{{route('profile.delete',$profile->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

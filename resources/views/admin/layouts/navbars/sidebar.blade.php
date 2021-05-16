@@ -127,6 +127,18 @@
                             Profile Info
                         </a>
                 </li>
+
+                <li class="nav-item">
+                    @if (Request::is('work','work/*'))
+                    <a class="nav-link active" href="{{route('work.index')}}">
+                        @else
+                        <a class="nav-link" href="{{route('work.index')}}">
+                            @endif
+                            <i class="ni ni-planet text-blue"></i>
+                            Works
+                        </a>
+                </li>
+
                 <li class="nav-item ">
                     <a class="nav-link" href="">
                         <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}

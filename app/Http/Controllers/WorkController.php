@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
+use App\Models\Work;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class WorkController extends Controller
 {
 
     /**
@@ -25,8 +25,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.profile.index', [
-            'profiles' => Profile::all()
+        return view('admin.pages.work.index', [
+            'works' => Work::all()
         ]);
     }
 
@@ -37,7 +37,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.profile.create');
+        return view('admin.pages.work.create');
     }
 
     /**
@@ -49,26 +49,20 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $this->validation();
-        Profile::create([
+        Work::create([
             'name' => request('name'),
-            'job' => request('job'),
-            'intro' => request('intro'),
-            'birthday' => request('birthday'),
-            'address' => request('address'),
-            'phone1' => request('phone1'),
-            'phone2' => request('phone2'),
-            'email' => request('email'),
+            'description' => request('description'),
         ]);
-        return redirect()->back()->with('success', 'Profile Information Added Successfully');
+        return redirect()->back()->with('success', 'Work Information Added Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(Work $work)
     {
         //
     }
@@ -76,10 +70,10 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit(Work $work)
     {
         //
     }
@@ -88,10 +82,10 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, Work $work)
     {
         //
     }
@@ -99,26 +93,20 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Profile  $profile
+     * @param  \App\Models\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy(Work $work)
     {
-        $profile->delete();
-        return redirect()->back()->with('success', 'Profile Information Deleted Successfully');
+        $work->delete();
+        return redirect()->back()->with('success', 'Work Information Deleted Successfully');
     }
 
     private function validation()
     {
         request()->validate([
             'name' => 'required|string',
-            'job' => 'required|string',
-            'intro' => 'required|string',
-            'address' => 'required|string',
-            'phone1' => 'required|string',
-            'phone2' => 'required|string',
-            'birthday' => 'required|date',
-            'email' => 'required|string|email|max:255',
+            'description' => 'required|string',
         ]);
     }
 }
